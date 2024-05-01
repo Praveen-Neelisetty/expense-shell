@@ -9,6 +9,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+read -r "Please enter mySql Password: " mySql-root-password 
 
 if [ $USERID -ne 0 ]
 then
@@ -61,4 +62,25 @@ VALIDATE $? "Extracted backend code"
 npm install
 VALIDATE $? "Installing npm packages"
 
-cp 
+cp /home/ec2-user/expense-shell etc/systemd/system/backend.service &>>LOGFILE
+VALIDATE $? "Copied backend service"
+
+systemctl daemon reload &>>LOGFILE
+VALIDATE $? "daemon reload"
+
+systemctl start backend &>>$LOGFILE
+VALIDATE $? "Starting backend"
+
+systemctl enable backend &>>$LOGFILE
+VALIDATE $? "Enabling backend"
+
+dnf install mysql -y &&>>LOGFILE
+VALIDATE $? "MySQL client installlation"
+
+mysql_secure_installation -h db.praveen.store -u root -p${mySql-root-password} < /app/schema/backend.sql &>>LOGFILE
+VALIDATE $? "Schema Loading"
+
+systemctl restart backend &>>$LOGFILE
+VALIDATE $? "Restarting Backend"
+
+
