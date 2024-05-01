@@ -48,8 +48,8 @@ VALIDATE $? "Enabling MySQL Server"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 # VALIDATE $? "Setting up MySql Root Password"
 
- mysql_secure_installation -h db.praveen.store -u root -p ${MySqlPassword} -e 'show databases' &>>LOGFILE
- echo -e "$? $Y value $N"
+mysql -h db.praveen.store -u root -p ${MySqlPassword} -e 'show databases' &>>LOGFILE
+echo -e "$? $Y value $N"
 
 if [ $? -ne 0 ]
 then    
