@@ -45,7 +45,7 @@ VALIDATE $? "Removing Default HTML Files"
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Downloading frontend code"
 
-cd /usr/sahre/nginx/html/ &>>LOGFILE
+cd /usr/share/nginx/html/ &>>LOGFILE
 unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "Extracting frontend code"
 

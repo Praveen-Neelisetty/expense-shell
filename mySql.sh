@@ -53,7 +53,7 @@ echo -e "$? $Y value $N"
 
 if [ $? -ne 0 ]
 then    
-    mysql_secure_insatllation --set-root-pass ${MySqlPassword} &>>LOGFILE
+    mysql_secure_installation --set-root-pass ${MySqlPassword} &>>LOGFILE
     VALIDATE $? "MySQL Password Setup Completed"
 else
     echo -e "MySQL Password Setup Already $G Completed $N, Hence $Y SKIPPING $N"
