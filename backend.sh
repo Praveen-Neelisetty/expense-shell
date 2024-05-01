@@ -42,7 +42,7 @@ VALIDATE $? "NodeJs Installation"
 id expense
 if [ $? -ne 0 ]
 then
-    useradd expense
+    useradd expense &>>$LOGFILE
     VALIDATE $? "Useradded expense"
 else
     echo -e "Already that Username exists...$Y SKIPPING $N"
