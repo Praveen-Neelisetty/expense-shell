@@ -10,8 +10,8 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 read -r -p "Enter You MySQL Password: " MySqlPassword
-echo "Enter You MySQL Password: ${MySqlPassword}"
-echo "Enter You MySQL Second Time for Verification Password: $MySqlPassword"
+# echo "Enter You MySQL Password: ${MySqlPassword}"
+# echo "Enter You MySQL Second Time for Verification Password: $MySqlPassword"
 
 
 if [ $USERID -ne 0 ]
@@ -48,7 +48,7 @@ VALIDATE $? "Enabling MySQL Server"
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 # VALIDATE $? "Setting up MySql Root Password"
 
-mysql -h db.praveen.store -u root -p ${MySqlPassword} -e 'show databases' &>>LOGFILE
+mysql -h db.praveen.store -u root -p${MySqlPassword} -e 'show databases' &>>LOGFILE
 echo -e "$? $Y value $N"
 
 if [ $? -ne 0 ]
