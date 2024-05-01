@@ -9,7 +9,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-read -p "Please enter mySql Password: " mySql-root-password 
+read -p "Please enter mySql Password: " mySql_root_password 
 
 if [ $USERID -ne 0 ]
 then
@@ -77,7 +77,7 @@ VALIDATE $? "Enabling backend"
 dnf install mysql -y &&>>LOGFILE
 VALIDATE $? "MySQL client installlation"
 
-mysql_secure_installation -h db.praveen.store -u root -p${mySql-root-password} < /app/schema/backend.sql &>>LOGFILE
+mysql_secure_installation -h db.praveen.store -u root -p${mySql_root_password} < /app/schema/backend.sql &>>LOGFILE
 VALIDATE $? "Schema Loading"
 
 systemctl restart backend &>>$LOGFILE
