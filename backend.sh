@@ -62,7 +62,7 @@ VALIDATE $? "Extracted backend code"
 npm install &>>$LOGFILE
 VALIDATE $? "Installing npm packages"
 
-cp  /etc/systemd/s/home/ec2-user/expense-shell/backend.serviceystem/backend.service &>>$LOGFILE
+cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "Copied backend service"
 
 systemctl daemon-reload &>>$LOGFILE
@@ -77,7 +77,7 @@ VALIDATE $? "Enabling backend"
 dnf install mysql -y &>>$LOGFILE
 VALIDATE $? "MySQL client installlation"
 
-mysql_secure_installation -h db.praveen.store -uroot -p${mySql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h db.praveen.store -uroot -p${mySql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 VALIDATE $? "Schema Loading"
 
 systemctl restart backend &>>$LOGFILE
