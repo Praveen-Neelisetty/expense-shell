@@ -30,13 +30,13 @@ VALIDATE()
     fi
 }
 
-dnf install ngnix -y &>>LOGFILE
-VALIDATE $? "Installing ngnix"
+dnf install nginx -y &>>LOGFILE
+VALIDATE $? "Installing nginx"
 
-systemctl enable ngnix &>>LOGFILE
-VALIDATE $? "Enabling ngnix"
+systemctl enable nginx &>>LOGFILE
+VALIDATE $? "Enabling nginx"
 
-systemctl start ngnix &>>LOGFILE
+systemctl start nginx &>>LOGFILE
 VALIDATE $? "Start nginx"
 
 rm -rf /usr/share/nginx/html/* &>>LOGFILE
@@ -45,7 +45,7 @@ VALIDATE $? "Removing Default HTML Files"
 curl -o /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>$LOGFILE
 VALIDATE $? "Downloading frontend code"
 
-cd /usr/sahre/ngnix/html/ &>>LOGFILE
+cd /usr/sahre/nginx/html/ &>>LOGFILE
 unzip /tmp/frontend.zip &>>$LOGFILE
 VALIDATE $? "Extracting frontend code"
 
