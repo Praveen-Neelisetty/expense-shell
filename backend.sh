@@ -40,10 +40,10 @@ dnf install nodejs -y &>>LOGFILE
 VALIDATE $? "NodeJs Installation"
 
 id expense
-if [ $1 -ne 0 ]
+if [ $? -ne 0 ]
 then
     useradd expense
-    VALIDATE $? "Useradded Expense"
+    VALIDATE $? "Useradded expense"
 else
     echo -e "Already that Username exists...$Y SKIPPING $N"
 fi
